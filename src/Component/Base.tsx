@@ -14,9 +14,9 @@ import VectorLayer from "ol/layer/Vector";
 
 
 
-const Base = (props, {children}) => {
+const Base = (props: { center: any; zoom: any; }, {children}: any) => {
     const { center, zoom } = props;
-    const mapElement = useRef(null);
+    const mapElement = useRef();
 
     const baseLayer = new TileLayer (
         { source: new XYZ ({
@@ -55,7 +55,7 @@ const Base = (props, {children}) => {
         initialmap.addLayer(layer);
         initialmap.updateSize();
 
-        return() => initialmap.setTarget(null)
+        return() => initialmap.setTarget()
 
       }, []);
       //new

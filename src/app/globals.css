@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 html,body{
   height: 100vh;
   background-color: #F3F0E7;
@@ -14,4 +16,32 @@ html,body{
   width: 100%;
   
   
+}
+
+.headmap{
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+.subheadmap{
+  font-weight: 500;
+  padding: 5px;
+  font-size: 1.2rem;
+}
+.list{
+  padding: 5px 0px 5px 10px;
+
+}
+
+.subtitle{
+  padding: 10px;
+}
+
+.sublabel{
+  padding: 20px;
+  margin: 10px;
+}
+.text_red{
+  color: red;
+  padding-left: 20px;
 }

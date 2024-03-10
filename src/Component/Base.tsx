@@ -15,8 +15,9 @@ import VectorLayer from "ol/layer/Vector";
 
 
 const Base = (props: { center: any; zoom: any; }, {children}: any) => {
+
     const { center, zoom } = props;
-    const mapElement = useRef();
+    const mapElement = useRef(null);
 
     const baseLayer = new TileLayer (
         { source: new XYZ ({
@@ -29,8 +30,9 @@ const Base = (props: { center: any; zoom: any; }, {children}: any) => {
 
 
     useEffect(() => {
+      
         const initialmap = new Map({
-          target: mapElement.current,
+          target: mapElement.current!,
           layers: [
             baseLayer
           ],
@@ -57,8 +59,9 @@ const Base = (props: { center: any; zoom: any; }, {children}: any) => {
 
         return() => initialmap.setTarget()
 
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
-      //new
+      
       
       
      

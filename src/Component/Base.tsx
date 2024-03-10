@@ -14,12 +14,12 @@ import VectorLayer from "ol/layer/Vector";
 
 
 
-const Base = (props: { center: any; zoom: any; }, {children}: any) => {
+const Base = (props: { center: any; zoom: any; }, {children}: any) => { 
 
     const { center, zoom } = props;
-    const mapElement = useRef(null);
+    const mapElement = useRef(null); //ref is set null
 
-    const baseLayer = new TileLayer (
+    const baseLayer = new TileLayer ( //this is feature of OpenLayers
         { source: new XYZ ({
             url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             crossOrigin: 'anonymous',
@@ -32,21 +32,22 @@ const Base = (props: { center: any; zoom: any; }, {children}: any) => {
     useEffect(() => {
       
         const initialmap = new Map({
-          target: mapElement.current!,
+          target: mapElement.current!, //current!, the ! is given for ref={mapElement} so it get mutable
           layers: [
             baseLayer
           ],
           view: new View({
-            center: fromLonLat(center),
-            zoom: (zoom)
+            center: fromLonLat(center), //default center of the map when u visit the website, it is prop and prop value can be given in the realmap.tsx file
+            zoom: (zoom) // the value can be changed in realmap.tsx file. this is prop
           })
         });
         
+        //following code is for the Marker
         const layer =new VectorLayer({
           source: new VectorSource({
             features:[
               new Feature({
-                geometry: new Point (fromLonLat([73.8567, 18.5204]))
+                geometry: new Point (fromLonLat([73.8567, 18.5204])) //The blue circle is at Pune 
               })
             ]
           })
@@ -54,10 +55,10 @@ const Base = (props: { center: any; zoom: any; }, {children}: any) => {
 
 
 
-        initialmap.addLayer(layer);
+        initialmap.addLayer(layer); //new layer for the marker
         initialmap.updateSize();
 
-        return() => initialmap.setTarget()
+        return() => initialmap.setTarget() //this is targetting to run the map
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
@@ -67,7 +68,7 @@ const Base = (props: { center: any; zoom: any; }, {children}: any) => {
      
       return (
         <>
-        <div id="map" ref={mapElement}> {children} </div>
+        <div id="map" ref={mapElement}> {children} </div> {/*The ref here is mutable as object*/}
             {/* The following code are for draw and measurement feature. which is not developed yet*/}
             <main>
               <div className='subtitle'>YET to develop</div>
